@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="DesafioMentoriaSTI3.View.UserControls.Pedidos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DesafioMentoriaSTI3.View.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1300">
+    <Grid  Margin="20" Background="White">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="900" />
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="10,10,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Height="25" 
+                   Foreground="DarkGray"
+                   FontSize="15" 
+                   VerticalAlignment="Center"
+                   Text="Pesquise pelo nome do cliente"
+                   TabIndex="1"/>
+
+            <Button x:Uid="BtnTelaPedidos"
+                    Grid.Column="1" 
+                    Style="{StaticResource BtnTelaPedidos}"
+                    Content="_Pesquisar"
+                    TabIndex="2"/>
+
+            <Button x:Uid="BtnTelaPedidos"
+                    Grid.Column="3"
+                    Style="{StaticResource BtnTelaPedidos}"
+                    Content="_Sincronizar"
+                    TabIndex="3"/>     
+           
+            
+        </Grid>
+
+        <StackPanel Grid.Column="2"
+                    Height="25"
+                    VerticalAlignment="Center" 
+                    Background="#75C7C1"  >
+            
+            <Label  Content="Detalhes do Pedido" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Foreground="White"   
+                    Margin="0,2,2,2" />
+            
+        </StackPanel>       
+
+
+    </Grid>
+
+
+
+</UserControl>

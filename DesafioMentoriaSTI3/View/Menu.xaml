@@ -1,0 +1,128 @@
+﻿<Window x:Class="DesafioMentoriaSTI3.View.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesafioMentoriaSTI3.View"
+        mc:Ignorable="d"
+        Height="740" Width="1360"
+        WindowStartupLocation="CenterScreen" 
+        Background="LightGray"
+        WindowStyle="None"       
+        MouseDown="Window_MouseDown"
+        MinWidth="550"
+        MinHeight="300">
+
+    <Grid x:Name="GridPrincipal" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="GridCabecalho" Grid.ColumnSpan="2"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition  />
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Border x:Name="BordaCabecalho"
+                    BorderThickness="0,0,0,2" 
+                    BorderBrush="Black" 
+                    Grid.ColumnSpan="6"
+                    Background="Gray"/>
+
+            <StackPanel VerticalAlignment="Center" 
+                        Margin="5">
+                <Menu HorizontalAlignment="Center" 
+                      Background="Gray"
+                      Foreground="White"
+                      FontSize="20">
+                    <MenuItem Header="_Menu" HorizontalAlignment="Center">
+                        <MenuItem Header="_Clientes" Foreground="Black" />
+                        <MenuItem Header="_Produtos" Foreground="Black" />
+                        <MenuItem Header="_Pedidos"  Foreground="Black"/>
+                        <Separator />
+                        <MenuItem Header="_Sair" Foreground="Black" />
+                    </MenuItem>
+                </Menu>
+
+            </StackPanel>
+
+            <Label  Grid.Column="2" 
+                    VerticalAlignment="Center"
+                    Content="PEDIDOS STI3" 
+                    Foreground="#EAE4F2" 
+                    FontSize="20" 
+                    Margin="5,0,0,0" />
+
+            <Border Height="20" 
+                    Grid.Column="1" 
+                    BorderThickness="0,0,2,0" 
+                    HorizontalAlignment="Center"
+                    BorderBrush="#D1CFD4"/>
+
+            <Grid  x:Name="BtnsBarraTitulo" Grid.Column="5"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1" Margin="0,0,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button  Click="BtnBarraTitulo_Click"
+                             x:Uid="BntBarraTitulo"
+                             x:Name="BtnMinimizar" 
+                             Style="{StaticResource BntBarraTitulo}">
+                        <Button.Content>
+                            <Line Stroke="White" 
+                                  StrokeThickness="2"                                  
+                                  X1="15" 
+                                  />
+                        </Button.Content>
+                    </Button>
+
+                    <Button  Grid.Column="1"
+                            Click="BtnBarraTitulo_Click"
+                            x:Uid="BntBarraTitulo" 
+                            x:Name="BtnMaximizar"
+                            Style="{StaticResource BntBarraTitulo}">
+                        <Button.Content>
+                            <Border BorderThickness="2"  
+                                    BorderBrush="White" 
+                                    VerticalAlignment="Center"  >
+                                <Rectangle Height="12" 
+                                           Width="12"/>
+                            </Border>
+                        </Button.Content>
+                    </Button>
+
+                    <Button Grid.Column="2"
+                            Click="BtnBarraTitulo_Click"
+                            x:Uid="BntBarraTitulo"
+                            x:Name="BtnFechar" 
+                            Style="{StaticResource BntBarraTitulo}"
+                            Content="X" />
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+        <ContentControl Grid.Row="1" x:Name="conteudo" Grid.ColumnSpan="2"/>
+
+    </Grid>
+
+</Window>
