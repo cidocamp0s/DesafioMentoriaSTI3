@@ -6,22 +6,24 @@ namespace DesafioMentoriaSTI3.Model
 {
     public class PedidoModel
     {
-        public double Numero { get; set; }
-        public DateTime DataCriacao { get; set; }
-        public DateTime DataAlteracao { get; set; }
-        public string Status { get; set; }
-        public string TipoPagamento { get; set; }
-        public decimal Desconto { get; set; }
-        public decimal Frete { get; set; }
-        public decimal SubTotal{ get; set; }
-        public decimal ValorTotal { get; set; }
-        public int Cliente { get; set; }
-        public EnderecoEntrega EnderecoEntrega { get; set; }        
-        public List<ItemPedidoModel> Itens { get; set; }
-        public List<Pagamento> Pagamento { get; set; }
-
-
-
-
+        public string Id { get; set; }
+        public int numero { get; set; }
+        public DateTime dataCriacao { get; set; }
+        public DateTime dataAlteracao { get; set; }
+        public string status { get; set; }
+        public decimal desconto { get; set; }
+        public decimal frete { get; set; }
+        public decimal subTotal { get; set; }
+        public decimal valorTotal { get; set; }
+        public ClienteModel  Cliente { get; set; }
+        public EnderecoEntregaModel enderecoEntrega { get; set; }
+        public List<ItensPedidoModel> itens { get; set; }
+        public List<PagamentoModel> pagamento { get; set; }
     }
+
+
+
+
+
 }
+

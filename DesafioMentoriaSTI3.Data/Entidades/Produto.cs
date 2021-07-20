@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DesafioMentoriaSTI3.Model
+namespace DesafioMentoriaSTI3.Data.Context
 {
-    public class ProdutoModel
+    public class Produto
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string Nome { get; set; }
         public decimal Valor { get; set; }
     }

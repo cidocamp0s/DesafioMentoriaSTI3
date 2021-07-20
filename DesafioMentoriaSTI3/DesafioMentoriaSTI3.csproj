@@ -13,4 +13,20 @@
     <Page Remove="NovaPasta\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Model\StatusModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DesafioMentoriaSTI3.Data\DesafioMentoriaSTI3.Data.csproj" />
+  </ItemGroup>
+
 </Project>

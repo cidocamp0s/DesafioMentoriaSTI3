@@ -1,6 +1,10 @@
-﻿using DesafioMentoriaSTI3.View.UserControls;
+﻿using DesafioMentoriaSTI3.Data.Context;
+using DesafioMentoriaSTI3.Model;
+using DesafioMentoriaSTI3.View.UserControls;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,8 +25,25 @@ namespace DesafioMentoriaSTI3.View
         public Menu()
         {
             InitializeComponent();
+
+            Teste();
+
             conteudo.Content = new Pedidos();
+         
+
+          
         }
+        private void Teste()
+        {
+            using var context = new DesafioContext();
+
+            context.Database.EnsureCreated();  
+
+        }
+
+
+
+
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -70,9 +91,7 @@ namespace DesafioMentoriaSTI3.View
 
         private void MaximizarAplicacao()
         {
-            //    Height = SystemParameters.MaximizedPrimaryScreenHeight;
-            //    Width = SystemParameters.MaximizedPrimaryScreenWidth;
-            //    this.WindowState = WindowState.Normal;
+
             if (WindowState != WindowState.Maximized)
             {
                 WindowState = System.Windows.WindowState.Maximized;

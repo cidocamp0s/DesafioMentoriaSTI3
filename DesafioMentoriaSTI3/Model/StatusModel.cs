@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DesafioMentoriaSTI3.Data.Context
+namespace DesafioMentoriaSTI3.Model
 {
-    class DesafioMentoriaSTI3Context
+    class StatusModel
     {
+        string Status;
     }
 }

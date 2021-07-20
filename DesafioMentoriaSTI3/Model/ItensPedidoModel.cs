@@ -4,11 +4,14 @@ using System.Text;
 
 namespace DesafioMentoriaSTI3.Model
 {
-   public class ItemPedidoModel
+   public class ItensPedidoModel
     {
+        public string Id { get; set; }
         public string IdProduto { get; set; }
-        public string NomeProduto { get; set; }
+        public string IdPedido { get; set; }
+        public string Nome { get; set; }
         public double Quantidade { get; set; }
         public decimal ValorUnitario { get; set; }
+        
     }
 }
