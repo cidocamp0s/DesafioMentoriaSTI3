@@ -7,12 +7,13 @@ namespace DesafioMentoriaSTI3.Data
 {
     public class Pagamento
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public int Parcela { get; set; }
         public decimal Valor { get; set; }
         public string Codigo { get; set; }
         public string Nome { get; set; }
+        public Guid PedidoId { get; set; }
 
-        public Pedido Pedido { get; set; }
+        //public virtual Pedido Pedido { get; set; }
     }
 }

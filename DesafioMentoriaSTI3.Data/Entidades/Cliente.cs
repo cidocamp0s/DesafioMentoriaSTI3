@@ -7,7 +7,7 @@ namespace DesafioMentoriaSTI3.Data.Entidades
 {
     public class Cliente
     {
-        public string IdCliente { get; set; }
+        public Guid Id { get; set; }
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Cnpj { get; set; }

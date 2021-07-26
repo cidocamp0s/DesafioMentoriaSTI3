@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesafioMentoriaSTI3.Model
 {
-    public class PedidoModel
+    class teste
     {
         public Guid Id { get; set; }
         public double Numero { get; set; }
@@ -14,17 +14,8 @@ namespace DesafioMentoriaSTI3.Model
         public decimal Desconto { get; set; }
         public decimal Frete { get; set; }
         public decimal SubTotal { get; set; }
-        public decimal ValorTotal { get; set; }  
-        
-        public ClienteModel cliente { get; set; }
-        public EnderecoEntregaModel EnderecoEntrega { get; set; }
-        public List<ItensPedidoModel> Itens { get; set; }
-        public List<PagamentoModel> Pagamento { get; set; }
+        public decimal ValorTotal { get; set; }
+     
+        public List<ItensPedidoModel> ItensPedido { get; set; }
     }
-
-
-
-
-
 }
-

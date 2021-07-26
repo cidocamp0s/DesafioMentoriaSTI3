@@ -40,16 +40,15 @@
 
             <StackPanel VerticalAlignment="Center" 
                         Margin="5">
-                <Menu HorizontalAlignment="Center" 
+                <Menu  HorizontalAlignment="Center" 
                       Background="Gray"
                       Foreground="White"
                       FontSize="20">
                     <MenuItem Header="_Menu" HorizontalAlignment="Center">
-                        <MenuItem Header="_Clientes" Foreground="Black" />
-                        <MenuItem Header="_Produtos" Foreground="Black" />
-                        <MenuItem Header="_Pedidos"  Foreground="Black"/>
+                        <MenuItem Header="_Pedidos" Foreground="Black" x:Name="Pedidos" Click="MenuItem_Click" />
+                        <MenuItem Header="_Relatórios" Foreground="Black" x:Name="Relatorios" Click="MenuItem_Click" />
                         <Separator />
-                        <MenuItem Header="_Sair" Foreground="Black" />
+                        <MenuItem Header="_Sair" Foreground="Black" x:Name="Sair"  Click="MenuItem_Click"/>
                     </MenuItem>
                 </Menu>
 

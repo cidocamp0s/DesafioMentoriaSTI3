@@ -22,9 +22,7 @@ namespace DesafioMentoriaSTI3.Data.Mappings
             builder.Property(p => p.Numero).HasColumnType("varchar(10)").IsRequired();
             builder.Property(p => p.Referencia).HasColumnType("varchar(100)").IsRequired();
 
-            builder.HasMany(i => i.Pedido).WithOne(p => p.Endereco_Entrega);
-
-        
+       
 
 
         }

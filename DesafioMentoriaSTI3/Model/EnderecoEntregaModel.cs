@@ -6,7 +6,7 @@ namespace DesafioMentoriaSTI3.Model
 {
     public class EnderecoEntregaModel
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string endereco { get; set; }
         public string numero { get; set; }
         public string cep { get; set; }

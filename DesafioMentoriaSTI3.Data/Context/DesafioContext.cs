@@ -24,12 +24,17 @@ namespace DesafioMentoriaSTI3.Data.Context
 
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Pedido> Pedidos { get; set; }
+        public virtual DbSet<EnderecoEntrega> EnderecosEntregas { get; set; }
+        public virtual DbSet<ItensPedido> ItensPedidos{ get; set; }
+        public virtual DbSet<Pagamento>Pagamentos { get; set; }
+        public virtual DbSet<Produto> Produtos { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ClienteMapping());
 
-            modelBuilder.ApplyConfiguration(new EnderecoEntregaMapping());
+            modelBuilder.ApplyConfiguration(new EnderecoEntregaMapping()) ;
 
             modelBuilder.ApplyConfiguration(new ItensPedidoMapping());
 
@@ -37,7 +42,7 @@ namespace DesafioMentoriaSTI3.Data.Context
 
             modelBuilder.ApplyConfiguration(new PedidoMapping());
 
-            modelBuilder.ApplyConfiguration(new PagamentoMapping());
+            modelBuilder.ApplyConfiguration(new PagamentoMapping());     
 
 
 

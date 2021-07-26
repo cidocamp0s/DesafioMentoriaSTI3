@@ -6,8 +6,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/TitleBarButtons.xaml"/>
-                <ResourceDictionary Source="Resources/BtnTelaPedidos.xaml"/>
+                <ResourceDictionary Source="Resources/BordaLabelCabecalhoUc.xaml"/>
+                <ResourceDictionary Source="Resources/Botoes.xaml"/>
+                <ResourceDictionary Source="Resources/ItemsControl.xaml"/>
+     
+
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
          

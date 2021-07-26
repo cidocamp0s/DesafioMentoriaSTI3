@@ -7,7 +7,8 @@ namespace DesafioMentoriaSTI3.Data.Context
 {
     public class Pedido
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
+
         public double Numero { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
@@ -17,10 +18,15 @@ namespace DesafioMentoriaSTI3.Data.Context
         public decimal SubTotal { get; set; }
         public decimal ValorTotal { get; set; }
 
-        public Cliente Cliente { get; set; }
-        public EnderecoEntrega Endereco_Entrega { get; set; }
-        public List<ItensPedido> Itens { get; set; }
-        public List<Pagamento> Pagamento { get; set; }
+        public Guid ClienteId { get; set; }
+        public Guid EnderecoEntregaId { get; set; }
+
+
+
+        //public virtual Cliente Cliente { get; set; }
+        //public virtual EnderecoEntrega EnderecoEntrega { get; set; }
+        public virtual List<ItensPedido> Itens { get; set; }
+        //public Pagamento Pagamento { get; set; }
 
     }
 }

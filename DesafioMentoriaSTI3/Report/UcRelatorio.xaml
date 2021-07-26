@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="DesafioMentoriaSTI3.Report.UcRelatorio"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DesafioMentoriaSTI3.Report"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <Grid Margin="20" Background="White">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="130"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="5" >
+                    <Label  Content="Número inicial"/>
+                    <TextBox x:Name="TxtNumeroIncial"  />
+                    <Label   Content="Número Final"/>
+                    <TextBox x:Name="TxtNumeroFinal"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1">
+                    <Label Content="Valor Inicial"/>
+                    <TextBox x:Name="TxtValorIncial"/>
+                    <Label Content="Valor Final"/>
+                    <TextBox x:Name="TxtValorFinal"/>
+                </StackPanel>
+
+                <StackPanel  Grid.Column="2" Margin="5"  >
+                    <Label   Content="Data inicial"/>
+                    <DatePicker x:Name="DtpDataIncial" />
+                    
+                    <Label   Content="Data Final"/>
+                    <DatePicker  x:Name="DtpDataFinal" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="3" Grid.ColumnSpan="2">
+                    <Label Content="Cliente"/>
+
+                    <ListBox x:Name="LstClientes" 
+                             Height="100" 
+                             ItemsSource="{Binding ListaPedidos}"  
+                             SelectionMode="Multiple"  >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel  Orientation="Horizontal" >
+                                    <CheckBox  Content="{Binding cliente}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="5"
+                            Grid.ColumnSpan="2"
+                            Margin="5">
+                    <Label Content="Status"/>
+                    <ListBox x:Name="LsStatus" Height="50" FontSize="20" SelectionMode="Multiple" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel  Orientation="Horizontal" >
+                                        <CheckBox  Content="Aprovado"/>
+                                        <CheckBox  Content="Cancelado"/>
+                                </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="7" Margin="5">
+
+                    <Button x:Name="BtnVisualizarRelatorio" 
+                            Style="{StaticResource BtnArredondado}"  
+                            Content="Visualizar" />
+
+                    <Button x:Name="BtnImprimirRelatorio" 
+                            Style="{StaticResource BtnArredondado}"
+                            Content="Imprimir"
+                            Click="Btn_Click"/>
+                </StackPanel>     
+
+            </Grid>
+
+            <ContentControl x:Name="CcRelatorio" Grid.Row="2"/>
+
+        </Grid>
+    </Grid>
+
+</UserControl>

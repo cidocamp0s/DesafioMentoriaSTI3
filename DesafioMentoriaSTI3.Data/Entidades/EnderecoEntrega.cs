@@ -7,7 +7,7 @@ namespace DesafioMentoriaSTI3.Data.Entidades
 {
     public class EnderecoEntrega
     { 
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string Endereco { get; set; }
         public string Numero { get; set; }
         public string Cep { get; set; }
@@ -16,7 +16,8 @@ namespace DesafioMentoriaSTI3.Data.Entidades
         public string Estado { get; set; }
         public string Complemento { get; set; }
         public string Referencia { get; set; }
-        public List<Pedido> Pedido { get; set; }
+
+        //public virtual List<Pedido> Pedido { get; set; }
 
        
     }

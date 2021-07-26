@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:DesafioMentoriaSTI3.View.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1300">
+    
     <Grid  Margin="20" Background="White">
 
         <Grid.ColumnDefinitions>
@@ -16,7 +17,10 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
+            <RowDefinition Height="691"/>
+
         </Grid.RowDefinitions>
 
         <Grid Margin="10,10,0,10">
@@ -27,6 +31,8 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
+
+            
             <TextBox Height="25" 
                    Foreground="DarkGray"
                    FontSize="15" 
@@ -44,9 +50,13 @@
                     Grid.Column="3"
                     Style="{StaticResource BtnTelaPedidos}"
                     Content="_Sincronizar"
-                    TabIndex="3"/>     
-           
-            
+                    TabIndex="3"/>
+
+
+
+
+
+
         </Grid>
 
         <StackPanel Grid.Column="2"
@@ -60,7 +70,78 @@
                     Foreground="White"   
                     Margin="0,2,2,2" />
             
-        </StackPanel>       
+        </StackPanel>
+
+
+
+
+        <Grid Grid.Row="1"  Height="25" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}"                   
+                    Content="Número"/>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="1"   
+                    Content="Data"/>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="2"  
+                    Content="Cliente"/>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="3"   
+                    Content="Status"/>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="4"   
+                    Content="Valor Total"/>
+
+            </Grid>
+
+
+     
+
+        <ItemsControl  Grid.Row="3"  Background="white" BorderBrush="Gray" BorderThickness="1"    ItemsSource="{Binding ListaPedidos}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate >
+                  <Grid Margin="5">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock  Style="{StaticResource ItemsControl}"  Text="{Binding Numero }"/>
+
+                        <TextBlock Style="{StaticResource ItemsControl}"  Grid.Column="1" 
+                                    Text="{Binding  DataCriacao, ConverterCulture=pt-BR, StringFormat=D}"/>
+
+                        <TextBlock  Style="{StaticResource ItemsControl}"  Grid.Column="2" 
+                                     Text="{Binding  Cliente }"/>
+
+                        <TextBlock  Style="{StaticResource ItemsControl}"  Grid.Column="3"
+                                    Text="{Binding Status }"/>
+
+                        <TextBlock   Style="{StaticResource ItemsControl}"  Grid.Column="4" 
+                                    Text="{Binding ValorTotal, ConverterCulture=pt-BR, StringFormat=#\,##0.00}"/>
+
+                    </Grid>
+
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
 
 
     </Grid>

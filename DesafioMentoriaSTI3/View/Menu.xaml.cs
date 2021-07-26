@@ -1,5 +1,6 @@
 ﻿using DesafioMentoriaSTI3.Data.Context;
 using DesafioMentoriaSTI3.Model;
+using DesafioMentoriaSTI3.Report;
 using DesafioMentoriaSTI3.View.UserControls;
 using Newtonsoft.Json;
 using System;
@@ -26,24 +27,19 @@ namespace DesafioMentoriaSTI3.View
         {
             InitializeComponent();
 
-            Teste();
 
-            conteudo.Content = new Pedidos();
-         
 
+            Iniciar();
           
         }
-        private void Teste()
+        private void Iniciar()
         {
+
             using var context = new DesafioContext();
 
             context.Database.EnsureCreated();  
 
         }
-
-
-
-
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -77,9 +73,10 @@ namespace DesafioMentoriaSTI3.View
                 {
                     FecharAplicacao();
                 }
+
             }
         }
-
+    
         private void FecharAplicacao()
         {
             if (MessageBox.Show("Fechar", "Deseja Fechar a aplicação", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
@@ -112,6 +109,30 @@ namespace DesafioMentoriaSTI3.View
         private void MinimizarAplicacao()
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem MnItem)
+            {
+                if (MnItem.Name == "Pedidos")
+                {
+
+                    conteudo.Content = new Pedidos();
+                }
+
+                else if (MnItem.Name == "Relatorios")
+                {
+                    conteudo.Content = new UcRelatorio();
+                }
+
+                else if (MnItem.Name == "Sair")
+                {
+                    FecharAplicacao();
+                }
+
+
+            }
         }
     }
 }
