@@ -208,26 +208,6 @@ namespace DesafioMentoriaSTI3.View.UserControls
             }
 
         }
-        public void SalvarPagamentos(List<PagamentoModel> ListaPagamentos)
-        {
-            var pagamentos = new PagamentoBusinness();
-
-            foreach (var item in ListaPagamentos)
-            {
-                pagamentos.AdicionarPagamento(item);
-            }
-
-        }
-        public void SalvarItensPedidos(List<ItensPedidoModel> ListaItensPedidos)
-        {
-            var Itenspedido = new ItensPedidoBusinness();
-
-            foreach (var item in ListaItensPedidos)
-            {
-                Itenspedido.AdicionarItensPedido(item);
-            }
-
-        }
         public void SalvarProdutos(List<ProdutoModel> ListaProdutos)
         {
             var cliente = new ProdutoBusinnes();
