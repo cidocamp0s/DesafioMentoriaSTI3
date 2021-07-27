@@ -1,12 +1,9 @@
-﻿using DesafioMentoriaSTI3.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace DesafioMentoriaSTI3.Data.Entidades
 {
     public class EnderecoEntrega
-    { 
+    {
         public Guid Id { get; set; }
         public string Endereco { get; set; }
         public string Numero { get; set; }
@@ -17,7 +14,8 @@ namespace DesafioMentoriaSTI3.Data.Entidades
         public string Complemento { get; set; }
         public string Referencia { get; set; }
 
-        //public virtual List<Pedido> Pedido { get; set; }
+
+
 
        
     }

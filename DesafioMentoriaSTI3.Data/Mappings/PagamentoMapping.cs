@@ -17,6 +17,7 @@ namespace DesafioMentoriaSTI3.Data.Mappings
             builder.Property(p => p.Codigo).HasColumnType("varchar(100)").IsRequired();
             builder.Property(p => p.Nome).HasColumnType("Varchar(100)").IsRequired();
 
+       
          
 
 

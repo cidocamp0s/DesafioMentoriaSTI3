@@ -38,21 +38,32 @@ namespace DesafioMentoriaSTI3.View.UserControls
         {
             InitializeComponent();
 
+
+         
+
             SalvarClientes(ListagemClientes());
+
+            SalvarProdutos(ListagemProdutos());
+
             SalvarEnderecosEntrega(ListagemEnderecos());
-            SalvarPagamentos(ListagemPagamentos());
-            SalvarItensPedidos(ListagemItens());
 
+            //SalvarItensPedidos(ListagemItens());
 
+            //SalvarPagamentos(ListagemPagamentos());
 
             SalvarPedidos(ListagemPedidos());
 
-            ExibirPedidos();
+         
+
+
+            //ExibirPedidos();
 
 
 
 
         }
+
+       
 
 
         public List<PedidoModel> ListagemPedidos()
@@ -148,7 +159,7 @@ namespace DesafioMentoriaSTI3.View.UserControls
                 {
                     listaProdutos.Add(new ProdutoModel
                     {
-                        Id = itens.IdProduto,
+                        Id = itens.ProdutoId,
                         Nome = itens.Nome,
                         Valor = itens.ValorUnitario
                     });
@@ -214,6 +225,16 @@ namespace DesafioMentoriaSTI3.View.UserControls
             foreach (var item in ListaItensPedidos)
             {
                 Itenspedido.AdicionarItensPedido(item);
+            }
+
+        }
+        public void SalvarProdutos(List<ProdutoModel> ListaProdutos)
+        {
+            var cliente = new ProdutoBusinnes();
+
+            foreach (var item in ListaProdutos)
+            {
+                cliente.AdicionarProdutos(item);
             }
 
         }

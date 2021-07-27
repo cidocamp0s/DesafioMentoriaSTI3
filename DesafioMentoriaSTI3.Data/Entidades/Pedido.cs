@@ -1,6 +1,7 @@
 ﻿using DesafioMentoriaSTI3.Data.Entidades;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DesafioMentoriaSTI3.Data.Context
@@ -18,15 +19,14 @@ namespace DesafioMentoriaSTI3.Data.Context
         public decimal SubTotal { get; set; }
         public decimal ValorTotal { get; set; }
 
+
         public Guid ClienteId { get; set; }
         public Guid EnderecoEntregaId { get; set; }
 
-
-
-        //public virtual Cliente Cliente { get; set; }
-        //public virtual EnderecoEntrega EnderecoEntrega { get; set; }
-        public virtual List<ItensPedido> Itens { get; set; }
-        //public Pagamento Pagamento { get; set; }
+        public Cliente Cliente { get; set; }
+        public EnderecoEntrega EnderecoEntrega { get; set; }
+        public List<ItensPedido> Itens { get; set; }
+        public List<Pagamento> Pagamento { get; set; }
 
     }
 }

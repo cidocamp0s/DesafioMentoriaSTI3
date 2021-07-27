@@ -16,9 +16,7 @@ namespace DesafioMentoriaSTI3.Data.Mappings
             builder.Property(p=>p.Nome).HasColumnType("varchar(100)").IsRequired();
             builder.Property(p => p.Valor).HasColumnType("decimal(15,2)").IsRequired();
 
-            //builder.HasMany(i => i.itensPedido).WithOne(p => p.Produto).HasForeignKey(f=>f.IdProduto);
 
-           
         }
     }
 }

@@ -15,6 +15,8 @@ namespace DesafioMentoriaSTI3.Model
         public decimal Frete { get; set; }
         public decimal SubTotal { get; set; }
         public decimal ValorTotal { get; set; }  
+
+      
         
         public ClienteModel cliente { get; set; }
         public EnderecoEntregaModel EnderecoEntrega { get; set; }

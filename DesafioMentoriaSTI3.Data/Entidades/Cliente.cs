@@ -1,7 +1,6 @@
 ﻿using DesafioMentoriaSTI3.Data.Context;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DesafioMentoriaSTI3.Data.Entidades
 {
@@ -15,7 +14,8 @@ namespace DesafioMentoriaSTI3.Data.Entidades
         public string RazaoSocial { get; set; }
         public string Email { get; set; }
 
-        public List<Pedido> Pedido { get; set; }
+        //public List<Pedido> Pedido { get; set; }
+
 
     }
 }

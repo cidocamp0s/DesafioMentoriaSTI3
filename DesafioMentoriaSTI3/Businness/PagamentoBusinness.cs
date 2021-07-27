@@ -28,8 +28,10 @@ namespace DesafioMentoriaSTI3.Businness
                Codigo=pagamentoModel.Codigo,
                Nome=pagamentoModel.Nome,
                Parcela=pagamentoModel.Parcela,
-               Valor=pagamentoModel.Valor,
-               PedidoId =pagamentoModel.PedidoId  
+               Valor=pagamentoModel.Valor
+               //,
+               //PedidoId=pagamentoModel.PedidoId
+              
             };
 
 

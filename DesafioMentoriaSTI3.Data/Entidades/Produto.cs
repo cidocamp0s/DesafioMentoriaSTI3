@@ -11,6 +11,5 @@ namespace DesafioMentoriaSTI3.Data.Context
         public string Nome { get; set; }
         public decimal Valor { get; set; }
 
-        public virtual List<ItensPedido> itensPedido { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace DesafioMentoriaSTI3.Businness
 
                 Numero = p.Numero,
                 DataCriacao = p.DataCriacao,
-                Cliente = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Id).Select(c => c.Nome).ToString(),
+                Cliente = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Id).Select(c => c.Nome).First(),
                 Status=p.Status,
                 ValorTotal=p.ValorTotal
 

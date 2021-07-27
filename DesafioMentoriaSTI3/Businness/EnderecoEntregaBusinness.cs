@@ -31,7 +31,6 @@ namespace DesafioMentoriaSTI3.Businness
                 Numero = enderecoEntregaModel.numero,
                 Complemento = enderecoEntregaModel.complemento,
                 Referencia = enderecoEntregaModel.referencia
-
             };
 
 

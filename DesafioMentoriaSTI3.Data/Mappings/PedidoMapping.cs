@@ -21,13 +21,8 @@ namespace DesafioMentoriaSTI3.Data.Mappings
             builder.Property(p => p.Desconto).HasColumnType("decimal(15,2)").IsRequired();
             builder.Property(p => p.Frete).HasColumnType("decimal(15,2)").IsRequired();
             builder.Property(p => p.SubTotal).HasColumnType("decimal(15,2)").IsRequired();
-            builder.Property(p => p.ValorTotal).HasColumnType("decimal(15,2)").IsRequired();
-
-
-            //builder.HasMany(i => i.Itens).WithOne(p => p.Pedido);
-            ////builder.HasOne(i => i.Cliente).WithMany(p => p.Pedido);
-            //////builder.HasOne(i => i.EnderecoEntrega).WithMany(p => p.Pedido);
-            ////builder.HasOne(i => i.Pagamento).WithOne(p => p.Pedido);
+            builder.Property(p => p.ValorTotal).HasColumnType("decimal(15,2)").IsRequired();   
+         
 
 
         }
