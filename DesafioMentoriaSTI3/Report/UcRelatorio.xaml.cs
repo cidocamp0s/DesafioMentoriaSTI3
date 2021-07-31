@@ -1,8 +1,10 @@
-﻿using DesafioMentoriaSTI3.Data.Context;
+﻿using DesafioMentoriaSTI3.Businness;
+using DesafioMentoriaSTI3.Data.Context;
 using DesafioMentoriaSTI3.Model;
 using DesafioMentoriaSTI3.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,129 +23,49 @@ namespace DesafioMentoriaSTI3.Report
     /// </summary>
     public partial class UcRelatorio : UserControl
     {
+
         private UcRelatorioViewModel UcRelatorioVm = new UcRelatorioViewModel();
+
         public UcRelatorio()
         {
             InitializeComponent();
 
             DataContext = UcRelatorioVm;
 
-            //teste();
-
-            CcRelatorio.Content = new UcVisualizacaoPedidos();
-
+            CarregarPedidos();
         }
 
-        public void teste()
-        {
-            
 
-            UcRelatorioVm.RelatorioListaPedidos = new System.Collections.ObjectModel.ObservableCollection<RelatorioModel>()
-            {
-
-
-                new RelatorioModel
-                {
-                    Cliente = "cido",
-                    Numero = 31,
-                    Status = "Aprovado 1"
-                },
-                 new RelatorioModel
-                {
-                    Cliente = "jaque",
-                    Numero = 28,
-                    Status = "Aprovado 2"
-                },
-                  new RelatorioModel
-                {
-                    Cliente = "matheus",
-                    Numero = 17,
-                    Status = "Aprovado 3"
-                },
-                    new RelatorioModel
-                {
-                    Cliente = "jaque",
-                    Numero = 28,
-                    Status = "Aprovado 2"
-                },
-                  new RelatorioModel
-                {
-                    Cliente = "matheus",
-                    Numero = 17,
-                    Status = "Aprovado 3"
-                },
-                    new RelatorioModel
-                {
-                    Cliente = "jaque",
-                    Numero = 28,
-                    Status = "Aprovado 2"
-                },
-                  new RelatorioModel
-                {
-                    Cliente = "matheus",
-                    Numero = 17,
-                    Status = "Aprovado 3"
-                },
-                    new RelatorioModel
-                {
-                    Cliente = "jaque",
-                    Numero = 28,
-                    Status = "Aprovado 2"
-                },
-                  new RelatorioModel
-                {
-                    Cliente = "matheus",
-                    Numero = 17,
-                    Status = "Aprovado 3"
-                },
-                    new RelatorioModel
-                {
-                    Cliente = "jaque",
-                    Numero = 28,
-                    Status = "Aprovado 2"
-                },
-                  new RelatorioModel
-                {
-                    Cliente = "matheus",
-                    Numero = 17,
-                    Status = "Aprovado 3"
-                },
-                    new RelatorioModel
-                {
-                    Cliente = "jaque",
-                    Numero = 28,
-                    Status = "Aprovado 2"
-                },
-                  new RelatorioModel
-                {
-                    Cliente = "matheus",
-                    Numero = 17,
-                    Status = "Aprovado 3"
-                },
-                    new RelatorioModel
-                {
-                    Cliente = "jaque",
-                    Numero = 28,
-                    Status = "Aprovado 2"
-                },
-                  new RelatorioModel
-                {
-                    Cliente = "matheus",
-                    Numero = 17,
-                    Status = "Aprovado 3"
-                }
-
-
-
-
-
-            };
-        }
 
         private void Btn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("etste");
 
         }
+
+
+        private void BtnVisualizarRelatorio_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                if (btn.Name == "BtnVisualizarRelatorio")
+                {
+
+
+                }
+            }
+        }
+
+        private void BtnRelatorio_Click(object sender, RoutedEventArgs e)
+        {
+            //UcRelatorioVm.RelatorioListaPedidos = new ObservableCollection<RelatorioModel>(new RelatorioBusinness().ListaFiltradaPedidosRelatorio);
+        }
+
+
+        private void CarregarPedidos()
+        {
+            UcRelatorioVm.RelatorioListaPedidos = new ObservableCollection<RelatorioModel>(new RelatorioBusinness().ListaPedidosRelatorio());
+        }
     }
+
 }

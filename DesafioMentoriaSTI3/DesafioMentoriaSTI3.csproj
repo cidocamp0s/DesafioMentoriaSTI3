@@ -16,6 +16,11 @@
 
   <ItemGroup>
     <Compile Remove="Model\StatusModel.cs" />
+    <Compile Remove="Model\teste.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Resources\TextBox.xaml" />
   </ItemGroup>
 
   <ItemGroup>

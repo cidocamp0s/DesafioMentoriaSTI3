@@ -25,12 +25,14 @@ namespace DesafioMentoriaSTI3.View
     {
         public Menu()
         {
-            InitializeComponent();
-
-
+            InitializeComponent();      
 
             Iniciar();
-          
+
+            new Pedidos();
+
+            
+
         }
         private void Iniciar()
         {

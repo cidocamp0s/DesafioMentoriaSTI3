@@ -14,11 +14,11 @@ namespace DesafioMentoriaSTI3.Model
         public decimal Desconto { get; set; }
         public decimal Frete { get; set; }
         public decimal SubTotal { get; set; }
-        public decimal ValorTotal { get; set; }  
+        public decimal ValorTotal { get; set; }
 
-      
-        
-        public ClienteModel cliente { get; set; }
+
+
+        public ClienteModel Cliente { get; set; }
         public EnderecoEntregaModel EnderecoEntrega { get; set; }
         public List<ItensPedidoModel> Itens { get; set; }
         public List<PagamentoModel> Pagamento { get; set; }

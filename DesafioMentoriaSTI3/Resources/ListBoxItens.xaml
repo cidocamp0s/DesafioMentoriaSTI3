@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="ListBoxItem" x:Name="ListBox">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Status}" Value="CANCELADO">
+                <Setter Property="Foreground" Value="Red" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Status}" Value="APROVADO">
+                <Setter Property="Foreground" Value="Black" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+</ResourceDictionary>

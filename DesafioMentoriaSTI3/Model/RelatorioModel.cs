@@ -10,6 +10,7 @@ namespace DesafioMentoriaSTI3.Model
     {
 
         public Guid Id { get; set; }
+        public string Cliente { get; set; }
         public double Numero { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
@@ -19,10 +20,6 @@ namespace DesafioMentoriaSTI3.Model
         public decimal SubTotal { get; set; }
         public decimal ValorTotal { get; set; }
 
-        public string Cliente { get; set; }
-
-        public EnderecoEntregaModel EnderecoEntrega { get; set; }
-        public List<ItensPedidoModel> Itens { get; set; }
-        public List<PagamentoModel> Pagamento { get; set; }
+       
     }
 }

@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:DesafioMentoriaSTI3.Report"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <Grid Margin="20" Background="White">
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="130"/>
-                <RowDefinition/>
+                <RowDefinition Height="50 "/>
             </Grid.RowDefinitions>
 
             <Grid >
@@ -28,37 +28,34 @@
 
                 <StackPanel Margin="5" >
                     <Label  Content="Número inicial"/>
-                    <TextBox x:Name="TxtNumeroIncial"  />
+                    <TextBox x:Name="TxtNumeroIncial"  Text="{Binding Numero}" />
                     <Label   Content="Número Final"/>
-                    <TextBox x:Name="TxtNumeroFinal"/>
+                    <TextBox x:Name="TxtNumeroFinal" Text="{Binding Numero}"/>
                 </StackPanel>
-                
-                <StackPanel Grid.Column="1">
-                    <Label Content="Valor Inicial"/>
-                    <TextBox x:Name="TxtValorIncial"/>
+
+                <StackPanel Margin="5" Grid.Column="1">
+                    <Label Content="Valor Inicial" />
+                    <TextBox x:Name="TxtValorIncial" Text="{Binding ValorTotal}"/>
                     <Label Content="Valor Final"/>
-                    <TextBox x:Name="TxtValorFinal"/>
+                    <TextBox x:Name="TxtValorFinal" Text="{Binding ValorTotal}"/>
                 </StackPanel>
 
                 <StackPanel  Grid.Column="2" Margin="5"  >
                     <Label   Content="Data inicial"/>
-                    <DatePicker x:Name="DtpDataIncial" />
-                    
+                    <DatePicker x:Name="DtpDataCriacaoInicia"  SelectedDate="{Binding DataCriacao}" />
                     <Label   Content="Data Final"/>
-                    <DatePicker  x:Name="DtpDataFinal" />
+                    <DatePicker  x:Name="DtpDataCriacaoFinal"  SelectedDate="{Binding DataCriacao}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="3" Grid.ColumnSpan="2">
-                    <Label Content="Cliente"/>
-
+                    <Label Content="Cliente" />
                     <ListBox x:Name="LstClientes" 
                              Height="100" 
-                             ItemsSource="{Binding ListaPedidos}"  
                              SelectionMode="Multiple"  >
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel  Orientation="Horizontal" >
-                                    <CheckBox  Content="{Binding cliente}"/>
+                                    <CheckBox  Content="{Binding Path=cliente}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -67,18 +64,17 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="5"
-                            Grid.ColumnSpan="2"
-                            Margin="5">
+                            Grid.ColumnSpan="2">
                     <Label Content="Status"/>
-                    <ListBox x:Name="LsStatus" Height="50" FontSize="20" SelectionMode="Multiple" >
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel  Orientation="Horizontal" >
-                                        <CheckBox  Content="Aprovado"/>
-                                        <CheckBox  Content="Cancelado"/>
+                    <ListBox x:Name="LsStatus" Height="51" FontSize="20" SelectionMode="Multiple" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel  Orientation="Horizontal" >
+                                    <CheckBox  Content="Aprovado"/>
+                                    <CheckBox  Content="Cancelado"/>
                                 </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
 
                     </ListBox>
 
@@ -88,19 +84,64 @@
 
                     <Button x:Name="BtnVisualizarRelatorio" 
                             Style="{StaticResource BtnArredondado}"  
-                            Content="Visualizar" />
+                            Content="Visualizar"
+                            Click="BtnRelatorio_Click"/>
 
                     <Button x:Name="BtnImprimirRelatorio" 
                             Style="{StaticResource BtnArredondado}"
                             Content="Imprimir"
-                            Click="Btn_Click"/>
-                </StackPanel>     
+                            Click="BtnRelatorio_Click"/>
+                </StackPanel>
 
             </Grid>
 
-            <ContentControl x:Name="CcRelatorio" Grid.Row="2"/>
+            <Grid Grid.Row="2">
+
+               
+
+
+                <ItemsControl    Grid.Row="3"   Background="white" BorderBrush="Gray" BorderThickness="1"    ItemsSource="{Binding RelatorioListaPedidos}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate >
+
+                            <Grid Margin="5">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="230"/>
+                                    <ColumnDefinition Width="300"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="130"/>
+                                </Grid.ColumnDefinitions>
+
+                                
+                                
+
+                                <TextBlock  Text="{Binding Numero }"/>
+
+                                <TextBlock   Grid.Column="1"  Grid.Row="1"
+                                    Text="{Binding  DataCriacao, ConverterCulture=pt-BR, StringFormat=D}"/>
+
+                                <TextBlock    Grid.Column="2" Grid.Row="1"
+                                     Text="{Binding  Cliente }"/>
+
+                                <TextBlock    Grid.Column="3" Grid.Row="1"
+                                    Text="{Binding Status }"/>
+
+                                <TextBlock   Grid.Column="4" Grid.Row="1"
+                                    Text="{Binding ValorTotal, ConverterCulture=pt-BR, StringFormat=#\,##0.00}"/>
+
+                            </Grid>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </Grid>
 
         </Grid>
+
+
     </Grid>
 
 </UserControl>

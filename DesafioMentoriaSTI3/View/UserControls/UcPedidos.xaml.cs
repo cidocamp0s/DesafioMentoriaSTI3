@@ -1,24 +1,12 @@
 ﻿using DesafioMentoriaSTI3.Businness;
-using DesafioMentoriaSTI3.Data;
-using DesafioMentoriaSTI3.Data.Context;
 using DesafioMentoriaSTI3.Model;
 using DesafioMentoriaSTI3.ViewModel;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 using System.Net;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DesafioMentoriaSTI3.View.UserControls
 {
@@ -28,7 +16,7 @@ namespace DesafioMentoriaSTI3.View.UserControls
     public partial class Pedidos : UserControl
     {
 
-        private UcPedidoViewModel ucPedidoVm = new UcPedidoViewModel();
+        private UcPedidoViewModel UcPedidoVm = new UcPedidoViewModel();
 
         string jsonPedidos = new WebClient().DownloadString("https://desafiotecnicosti3.azurewebsites.net/pedido");
 
@@ -36,38 +24,18 @@ namespace DesafioMentoriaSTI3.View.UserControls
 
         public Pedidos()
         {
+
             InitializeComponent();
 
+            DataContext = UcPedidoVm;
 
-         
-
-            SalvarClientes(ListagemClientes());
-
-            SalvarProdutos(ListagemProdutos());
-
-            SalvarEnderecosEntrega(ListagemEnderecos());
-
-            //SalvarItensPedidos(ListagemItens());
-
-            //SalvarPagamentos(ListagemPagamentos());
-
-            SalvarPedidos(ListagemPedidos());
-
-         
-
-
-            //ExibirPedidos();
-
-
-
+            VerificaJson();
+          
 
         }
 
-       
-
-
         public List<PedidoModel> ListagemPedidos()
-        {            
+        {
             var pedidos = JsonConvert.DeserializeObject<List<PedidoModel>>(jsonPedidos);
 
             List<PedidoModel> pedido = new List<PedidoModel>();
@@ -90,13 +58,14 @@ namespace DesafioMentoriaSTI3.View.UserControls
 
             foreach (var item in pedidos)
             {
-                clientes.Add(item.cliente);
+                clientes.Add(item.Cliente);
             }
 
             return clientes;
         }
         public List<EnderecoEntregaModel> ListagemEnderecos()
         {
+
 
             var pedidos = JsonConvert.DeserializeObject<List<PedidoModel>>(jsonPedidos);
 
@@ -109,42 +78,6 @@ namespace DesafioMentoriaSTI3.View.UserControls
             }
 
             return enderecoEntregas;
-        }
-        public List<PagamentoModel> ListagemPagamentos()
-        {
-
-            var pedidos = JsonConvert.DeserializeObject<List<PedidoModel>>(jsonPedidos);
-
-            List<PagamentoModel> pagamentos = new List<PagamentoModel>();
-
-            foreach (var item in pedidos)
-            {
-                foreach (var itens in item.Pagamento)
-                {
-                    pagamentos.Add(itens);
-                }
-               
-            }
-
-            return pagamentos;
-        }
-        public List<ItensPedidoModel> ListagemItens()
-        {
-
-            var pedidos = JsonConvert.DeserializeObject<List<PedidoModel>>(jsonPedidos);
-
-            List<ItensPedidoModel> listaItens = new List<ItensPedidoModel>();
-
-            foreach (var item in pedidos)
-            {
-                foreach (var itens in item.Itens)
-                {
-                    listaItens.Add(itens);
-                }
-
-            }
-
-            return listaItens;
         }
         public List<ProdutoModel> ListagemProdutos()
         {
@@ -171,20 +104,13 @@ namespace DesafioMentoriaSTI3.View.UserControls
             return listaProdutos;
         }
 
-
-
         public void SalvarPedidos(List<PedidoModel> ListaPedidos)
         {
             var pedido = new PedidoBusinness();
 
             foreach (var item in ListaPedidos)
             {
-
-
-
                 pedido.AdicionarPedido(item);
-
-
             }
 
         }
@@ -218,40 +144,118 @@ namespace DesafioMentoriaSTI3.View.UserControls
             }
 
         }
-
         public void ExibirPedidos()
         {
+                   UcPedidoVm.ListagemPedidos = new ObservableCollection<PedidoModel>(new PedidoBusinness().ListarPedidos());
+        }
+        public void ExibirPedidosCliente()
+        {
 
-            var listaPedidosClientes = new PedidoBusinness().ListarPedidos();
+            var cliente = UcPedidoVm.Nome;
 
-
-            foreach (var item in listaPedidosClientes)
+            if (!string.IsNullOrEmpty(cliente))
             {
-                ucPedidoVm.ListaPedidos.Add(new PedidoModel
-                {
-                    Numero = item.Numero,
-                    DataCriacao = item.DataCriacao,
-                    Id=item.Id
-                   
-                    
-                    
+                UcPedidoVm.ListagemPedidos = new ObservableCollection<PedidoModel>(new PedidoBusinness().ListarPedidos(cliente));
+            }
 
-
-                });
+            else
+            {
+                ExibirPedidos();
             }
 
 
 
+        }
+        public void ExibirPedidoDetalhado()
+        {
+            if (!LstPedidos.SelectedItem.Equals(null))
+            {
+                var pedidoSelecionado = LstPedidos.SelectedItem as PedidoModel;
+
+                var numeroPedidoSelecionado = pedidoSelecionado.Numero;
+
+
+                UcPedidoVm.PedidoDetalhado = new PedidoBusinness().PedidoDetalhado(numeroPedidoSelecionado);
+
+            }
+
+
 
         }
+        public void VerificaJson()
+        {
+            try
+            {
+              
+
+                var jsonPedidos = new WebClient().DownloadString("https://desafiotecnicosti3.azurewebsites.net/pedido");
+
+
+                SalvarClientes(ListagemClientes());
+
+                SalvarProdutos(ListagemProdutos());
+
+                SalvarEnderecosEntrega(ListagemEnderecos());
+
+                SalvarPedidos(ListagemPedidos());
+
+
+                ExibirPedidos();
+               
+
+            }
+            catch (System.Exception E)
+            {
+
+                MessageBox.Show(E.ToString(), "NÃO FOI POSSÍVEL A SINCRONIZAÇÃO, SERÃO EXIBIDOS OS DADOS SALVOS LOCALMENTE", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+
+          
+        }
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
 
 
 
+            if (sender is Button btn)
+            {
+                if (btn.Name == "BtnSincronizar")
+                {
+                    VerificaJson();
 
+                    MessageBox.Show("Sucesso!!", "Sincronia Efetuada com sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
 
+                if (btn.Name == "BtnPesquisar")
+                {
+                    ExibirPedidosCliente();
+                }
+                
+                
 
+            }
+        }
+        private void LstPedidos_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ExibirPedidoDetalhado();
+        }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ExibirPedidos();
+        }
 
-
+      
     }
+
+
+
+
+
+
+
+
+
 }
+

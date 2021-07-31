@@ -23,14 +23,14 @@ namespace DesafioMentoriaSTI3.Businness
             EnderecoEntrega enderecoEntrega = new EnderecoEntrega
             {
                Id = enderecoEntregaModel.Id,
-                Endereco = enderecoEntregaModel.endereco,
-                Bairro = enderecoEntregaModel.bairro,
-                Cidade = enderecoEntregaModel.cidade,
-                Estado = enderecoEntregaModel.estado,
-                Cep = enderecoEntregaModel.cep,
-                Numero = enderecoEntregaModel.numero,
-                Complemento = enderecoEntregaModel.complemento,
-                Referencia = enderecoEntregaModel.referencia
+                Endereco = enderecoEntregaModel.Endereco,
+                Bairro = enderecoEntregaModel.Bairro,
+                Cidade = enderecoEntregaModel.Cidade,
+                Estado = enderecoEntregaModel.Estado,
+                Cep = enderecoEntregaModel.Cep,
+                Numero = enderecoEntregaModel.Numero,
+                Complemento = enderecoEntregaModel.Complemento,
+                Referencia = enderecoEntregaModel.Referencia
             };
 
 

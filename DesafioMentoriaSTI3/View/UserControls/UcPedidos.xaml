@@ -4,148 +4,305 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DesafioMentoriaSTI3.View.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1300">
-    
-    <Grid  Margin="20" Background="White">
+             mc:Ignorable="d" d:DesignWidth="1300" Height="700"
+             Loaded="UserControl_Loaded">
+
+    <Grid Margin="20,20,20,15" Background="White" >
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="900" />
+            <ColumnDefinition Width="6*" />
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition Height="691"/>
-
         </Grid.RowDefinitions>
 
-        <Grid Margin="10,10,0,10">
+        <Grid Margin="10,10,0,10" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="100"/>
+
             </Grid.ColumnDefinitions>
 
-
-            
-            <TextBox Height="25" 
-                   Foreground="DarkGray"
+            <TextBox Height="25"  x:Name="TxtPesquisaNome" 
                    FontSize="15" 
                    VerticalAlignment="Center"
-                   Text="Pesquise pelo nome do cliente"
+                   Text="{Binding Path=Nome}"                 
                    TabIndex="1"/>
 
-            <Button x:Uid="BtnTelaPedidos"
+            <Button x:Name="BtnPesquisar"
                     Grid.Column="1" 
                     Style="{StaticResource BtnTelaPedidos}"
                     Content="_Pesquisar"
-                    TabIndex="2"/>
+                    TabIndex="2"
+                    Click="Button_Click"/>
 
-            <Button x:Uid="BtnTelaPedidos"
+            <Button x:Name="BtnSincronizar"
                     Grid.Column="3"
                     Style="{StaticResource BtnTelaPedidos}"
                     Content="_Sincronizar"
-                    TabIndex="3"/>
-
-
-
+                    TabIndex="3"
+                    Click="Button_Click" Grid.ColumnSpan="2"/>
 
 
 
         </Grid>
 
-        <StackPanel Grid.Column="2"
+        <StackPanel Margin="0,0,10,0"
+            Grid.Column="2"
+                    Height="26"
+                    VerticalAlignment="Center" 
+                    Background="#75C7C1" Grid.RowSpan="2"  >
+
+            <Label  Content="Detalhes do Pedido"
                     Height="25"
                     VerticalAlignment="Center" 
-                    Background="#75C7C1"  >
-            
-            <Label  Content="Detalhes do Pedido" 
-                    VerticalAlignment="Center" 
                     HorizontalAlignment="Center" 
-                    Foreground="White"   
-                    Margin="0,2,2,2" />
-            
+                    Foreground="White"
+/>
+
+        </StackPanel>
+
+        <Grid  Margin="10,0,0,0" Grid.Row="2"   Height="33" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="130"/>
+            </Grid.ColumnDefinitions>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}"                   
+                    Content="NÚMERO"/>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="1"   
+                    Content="DATA"/>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="2"  
+                    Content="CLIENTE"/>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="3"   
+                    Content="STATUS"/>
+
+            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="4"   
+                    Content="VALOR TOTAL"/>
+
+        </Grid>
+
+       
+
+        <ListBox  x:Name="LstPedidos" 
+                  Grid.Row="3" 
+                  VerticalAlignment="Top" 
+                  Height="540"
+                  Margin="10,0,0,0" 
+                  Background="white" 
+                  BorderBrush="Gray" 
+                  BorderThickness="1"    
+                  ItemsSource="{Binding ListagemPedidos}" Grid.RowSpan="2" MouseDoubleClick="LstPedidos_MouseDoubleClick">
+
+
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid Margin="5"  >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="220"/>
+                            <ColumnDefinition Width="430"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Numero, StringFormat=00#0}"/>
+
+                        <TextBlock Grid.Column="1"  
+                                   Text="{Binding  DataCriacao, ConverterCulture=pt-BR, StringFormat=D}"/>
+
+                        <TextBlock  Grid.Column="2" 
+                                    Text="{Binding  Path=Cliente.Nome }"/>
+                        
+                        <TextBlock  
+                                    Grid.Column="3"
+                                    Text="{Binding Status }"/>
+
+                        <TextBlock  Grid.Column="4" Margin="5,0,0,0">
+                            <Run Text="R$"/>
+                            <Run  Text="{Binding ValorTotal, ConverterCulture=pt-BR}"/>
+                        </TextBlock>
+                        <Border Grid.ColumnSpan="4"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+
+
+
+        </ListBox>
+
+        <StackPanel  Grid.Column="2" Grid.Row="2" Grid.RowSpan="3" Height="580" Width="335" VerticalAlignment="Top" HorizontalAlignment="Left">
+
+            <Label Content="Informações do Pedido" Foreground="#75C7C1" FontSize="20" Margin="-5,0,0,0" />
+
+            <ItemsControl x:Name="ItensCtrlInfoPedido">
+
+                <TextBlock  >
+                 <Run Text="Número: " />   
+                 <Run Text="{Binding Path=PedidoDetalhado.Numero, StringFormat=00#0}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="Data Criacão: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.DataCriacao, ConverterCulture=pt-br, StringFormat=d}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="Data Alteração: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.DataAlteracao, ConverterCulture=pt-br, StringFormat=d}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="Status: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.Status}"/>
+                </TextBlock>
+
+                <TextBlock>  
+                <Run Text="Desconto: "/>
+                <Run Text="R$"/>
+                <Run  Text="{Binding Path=PedidoDetalhado.Desconto, ConverterCulture=pt-BR}"/>
+                </TextBlock>
+
+                <TextBlock>  
+                <Run Text="Frete: "/>
+                <Run Text="R$"/>
+                <Run  Text="{Binding Path=PedidoDetalhado.Frete, ConverterCulture=pt-BR}"/>
+                </TextBlock>
+
+                <TextBlock>  
+                <Run Text="SubTotal: "/>
+                <Run Text="R$"/>
+                <Run  Text="{Binding Path=PedidoDetalhado.SubTotal, ConverterCulture=pt-BR}"/>
+                </TextBlock>
+
+                <TextBlock>  
+                <Run Text="Total: "/>
+                <Run Text="R$"/>
+                <Run  Text="{Binding Path=PedidoDetalhado.ValorTotal, ConverterCulture=pt-BR}"/>
+                </TextBlock>
+
+
+            </ItemsControl>
+
+            <Separator Height="30" Visibility="Hidden"/>
+
+            <ItemsControl x:Name="ItensCtrlDadosCliente">
+                <Label Content="Dados do Cliente" Foreground="#75C7C1" FontSize="20" Margin="-5,0,0,0" />
+
+                <TextBlock>
+                 <Run Text="Cliente: " />   
+                 <Run Text="{Binding Path=PedidoDetalhado.Cliente.Nome}"/>
+                </TextBlock>
+
+
+                    <TextBlock>
+                <Run Text="Documento: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.Cliente.Cpf}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="Data de Nascimento: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.Cliente.DataNascimento, ConverterCulture=pt-br, StringFormat=d}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="E-mail: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.Cliente.Email}"/>
+                </TextBlock>
+
+            </ItemsControl>
+
+            <Separator Height="30" Visibility="Hidden"/>
+
+            <ItemsControl x:Name="ItensCtrlLocalEntrega">
+
+                <Label Content="Local de Entrega" Foreground="#75C7C1" FontSize="20" Margin="-5,0,0,0" />
+
+                <TextBlock>
+                 <Run Text="Endereço: " />   
+                 <Run Text="{Binding Path=PedidoDetalhado.EnderecoEntrega.Endereco}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="Número: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.EnderecoEntrega.Numero}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="CEP: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.EnderecoEntrega.Cep}"/>
+                </TextBlock>
+
+                <TextBlock >
+                 <Run Text="Bairro: " />   
+                 <Run Text="{Binding Path=PedidoDetalhado.EnderecoEntrega.Bairro}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="Cidade: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.EnderecoEntrega.Cidade}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="Estado: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.EnderecoEntrega.Estado}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="Complemento: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.EnderecoEntrega.Complemento}"/>
+                </TextBlock>
+
+                <TextBlock>
+                <Run Text="Referência: "/>
+                <Run Text="{Binding Path=PedidoDetalhado.EnderecoEntrega.Referencia}"/>
+                </TextBlock>
+
+
+
+
+
+            </ItemsControl>
+
+
+
         </StackPanel>
 
 
 
 
-        <Grid Grid.Row="1"  Height="25" VerticalAlignment="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="350"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Label  Style="{ StaticResource BordaCAbecalhoGrid}"                   
-                    Content="Número"/>
-
-            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
-                    Grid.Column="1"   
-                    Content="Data"/>
-
-            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
-                    Grid.Column="2"  
-                    Content="Cliente"/>
-
-            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
-                    Grid.Column="3"   
-                    Content="Status"/>
-
-            <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
-                    Grid.Column="4"   
-                    Content="Valor Total"/>
-
-            </Grid>
 
 
-     
 
-        <ItemsControl  Grid.Row="3"  Background="white" BorderBrush="Gray" BorderThickness="1"    ItemsSource="{Binding ListaPedidos}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate >
-                  <Grid Margin="5">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70"/>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="350"/>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="350"/>
-                            <ColumnDefinition Width="100"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock  Style="{StaticResource ItemsControl}"  Text="{Binding Numero }"/>
-
-                        <TextBlock Style="{StaticResource ItemsControl}"  Grid.Column="1" 
-                                    Text="{Binding  DataCriacao, ConverterCulture=pt-BR, StringFormat=D}"/>
-
-                        <TextBlock  Style="{StaticResource ItemsControl}"  Grid.Column="2" 
-                                     Text="{Binding  Cliente }"/>
-
-                        <TextBlock  Style="{StaticResource ItemsControl}"  Grid.Column="3"
-                                    Text="{Binding Status }"/>
-
-                        <TextBlock   Style="{StaticResource ItemsControl}"  Grid.Column="4" 
-                                    Text="{Binding ValorTotal, ConverterCulture=pt-BR, StringFormat=#\,##0.00}"/>
-
-                    </Grid>
-
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
 
 
 
     </Grid>
-
 
 
 </UserControl>

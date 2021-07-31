@@ -5,10 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 
 namespace DesafioMentoriaSTI3.Businness
 {
-    
+
     class RelatorioBusinness
     {
         private readonly DesafioContext _context;
@@ -21,18 +22,46 @@ namespace DesafioMentoriaSTI3.Businness
 
         public List<RelatorioModel> ListaPedidosRelatorio()
         {
-         var lista= _context.Pedidos.AsNoTracking().Select(p => new RelatorioModel
-            {
 
+            var lista = _context.Pedidos.AsNoTracking().Select(p => new RelatorioModel
+            {
                 Numero = p.Numero,
                 DataCriacao = p.DataCriacao,
-                Cliente = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Id).Select(c => c.Nome).First(),
-                Status=p.Status,
-                ValorTotal=p.ValorTotal
+                Cliente = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Cliente.Id).Select(c => c.Nome).First(),
+                Status = p.Status,
+                ValorTotal = p.ValorTotal
+                
 
             }).ToList().OrderBy(x => x.Numero).ToList();
 
+
+
             return lista;
+        }
+
+
+        public List<RelatorioModel> ListaFiltradaPedidosRelatorio()
+        {
+            
+
+            var lista = _context.Pedidos.AsNoTracking().Select(p => new RelatorioModel
+            {
+                Numero = p.Numero,
+                DataCriacao = p.DataCriacao,
+                Cliente = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Cliente.Id).Select(c => c.Nome).First(),
+                Status = p.Status,
+                ValorTotal = p.ValorTotal
+               
+
+            }).ToList().OrderBy(x => x.Numero).ToList();
+
+
+        
+
+
+
+            return lista;
+
         }
 
     }

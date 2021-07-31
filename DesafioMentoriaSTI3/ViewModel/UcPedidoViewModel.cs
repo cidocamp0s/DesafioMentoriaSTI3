@@ -11,15 +11,39 @@ namespace DesafioMentoriaSTI3.ViewModel
     {
 
         private ObservableCollection<PedidoModel> _listaPedidos;
-        public ObservableCollection<PedidoModel> ListaPedidos
+        public ObservableCollection<PedidoModel> ListagemPedidos
         {
             get => _listaPedidos;
             set
             {
                 _listaPedidos = value;
-                OnPropertyChanged(nameof(ListaPedidos));
+                OnPropertyChanged(nameof(ListagemPedidos));
             }
         }
+
+        private PedidoModel _pedidoDetalhado;
+        public PedidoModel PedidoDetalhado
+        {
+            get => _pedidoDetalhado;
+            set
+            {
+                _pedidoDetalhado = value;
+                OnPropertyChanged(nameof(PedidoDetalhado));
+            }
+        }
+
+
+        private string _nome;
+        public string Nome
+        {
+            get => _nome;
+            set
+            {
+                _nome = value;
+                OnPropertyChanged(nameof(Nome));
+            }
+        }
+
 
 
     }

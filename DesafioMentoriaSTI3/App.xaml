@@ -8,10 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/BordaLabelCabecalhoUc.xaml"/>
                 <ResourceDictionary Source="Resources/Botoes.xaml"/>
-                <ResourceDictionary Source="Resources/ItemsControl.xaml"/>
-     
-
-
+                <ResourceDictionary Source="Resources/ListBoxItens.xaml"/>           
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
          
