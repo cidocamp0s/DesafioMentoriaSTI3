@@ -35,13 +35,6 @@ namespace DesafioMentoriaSTI3.Report
 
         }
 
-        private void BtnRelatorio_Click(object sender, RoutedEventArgs e)
-        {
-
-            FiltrarPedidos(sender);
-
-        }
-
         private void FiltrarPedidos(object sender)
         {
             var listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioGeral();
@@ -91,17 +84,20 @@ namespace DesafioMentoriaSTI3.Report
                 
             }
         }
-
         private void ListarPedidosFiltrados(List<RelatorioModel> listaFiltrada)
         {
             UcRelatorioVm.RelatorioListaPedidos = new ObservableCollection<RelatorioModel>(new RelatorioBusinness().ListaFiltrada(listaFiltrada));
         }
-
-
-        private void ValidacaoValor(object sender, TextCompositionEventArgs e)
+        private void ValidarValorInput(object sender, TextCompositionEventArgs e)
         {
             Regex valor = new Regex("[^0-9]+");
             e.Handled = valor.IsMatch(e.Text);
+        }
+        private void BtnRelatorio_Click(object sender, RoutedEventArgs e)
+        {
+
+            FiltrarPedidos(sender);
+
         }
 
     }

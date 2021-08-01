@@ -29,16 +29,16 @@
 
                 <StackPanel Margin="5" >
                     <Label  Content="Número inicial"/>
-                    <TextBox x:Name="TxtNumeroIncial"  Text="{Binding NumeroInicial}" PreviewTextInput="ValidacaoValor" />
+                    <TextBox x:Name="TxtNumeroIncial"  Text="{Binding NumeroInicial}" PreviewTextInput="ValidarValorInput" />
                     <Label   Content="Número Final"/>
-                    <TextBox x:Name="TxtNumeroFinal" Text="{Binding NumeroFinal}" PreviewTextInput="ValidacaoValor"/>
+                    <TextBox x:Name="TxtNumeroFinal" Text="{Binding NumeroFinal}" PreviewTextInput="ValidarValorInput"/>
                 </StackPanel>
 
                 <StackPanel Margin="5" Grid.Column="1">
                     <Label Content="Valor Inicial" />
-                    <TextBox x:Name="TxtValorIncial" Text="{Binding ValorInicial}" PreviewTextInput="ValidacaoValor"  />
+                    <TextBox x:Name="TxtValorIncial" Text="{Binding ValorInicial}" PreviewTextInput="ValidarValorInput"  />
                     <Label Content="Valor Final"/>
-                    <TextBox x:Name="TxtValorFinal" Text="{Binding ValorFinal}" PreviewTextInput="ValidacaoValor"/>
+                    <TextBox x:Name="TxtValorFinal" Text="{Binding ValorFinal}" PreviewTextInput="ValidarValorInput"/>
                 </StackPanel>
 
                 <StackPanel  Grid.Column="2" Margin="5"  >

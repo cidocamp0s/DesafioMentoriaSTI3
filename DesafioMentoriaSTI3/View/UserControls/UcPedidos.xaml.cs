@@ -20,8 +20,6 @@ namespace DesafioMentoriaSTI3.View.UserControls
 
         string jsonPedidos = new WebClient().DownloadString("https://desafiotecnicosti3.azurewebsites.net/pedido");
 
-
-
         public Pedidos()
         {
 
@@ -214,6 +212,15 @@ namespace DesafioMentoriaSTI3.View.UserControls
 
           
         }
+    
+        private void LstPedidos_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ExibirPedidoDetalhado();
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ExibirPedidos();
+        }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
@@ -225,7 +232,7 @@ namespace DesafioMentoriaSTI3.View.UserControls
                 {
                     VerificaJson();
 
-                      ExibirPedidos();
+                    ExibirPedidos();
 
                     MessageBox.Show("Sucesso!!", "Sincronia Efetuada com sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -235,22 +242,13 @@ namespace DesafioMentoriaSTI3.View.UserControls
                     ExibirPedidosCliente();
 
                 }
-                
-                
+
+
 
             }
         }
-        private void LstPedidos_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            ExibirPedidoDetalhado();
-        }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            ExibirPedidos();
-        }
 
-      
     }
 
 

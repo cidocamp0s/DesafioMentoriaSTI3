@@ -20,8 +20,6 @@ namespace DesafioMentoriaSTI3.Model
         public decimal SubTotal { get; set; }
         public decimal ValorTotal { get; set; }
 
-        //public List<string> ListaClientes { get; set; }
-
 
 
 
