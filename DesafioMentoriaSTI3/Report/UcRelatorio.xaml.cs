@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -32,40 +33,77 @@ namespace DesafioMentoriaSTI3.Report
 
             DataContext = UcRelatorioVm;
 
-            CarregarPedidos();
-        }
-
-
-
-        private void Btn_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("etste");
-
-        }
-
-
-        private void BtnVisualizarRelatorio_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button btn)
-            {
-                if (btn.Name == "BtnVisualizarRelatorio")
-                {
-
-
-                }
-            }
         }
 
         private void BtnRelatorio_Click(object sender, RoutedEventArgs e)
         {
-            //UcRelatorioVm.RelatorioListaPedidos = new ObservableCollection<RelatorioModel>(new RelatorioBusinness().ListaFiltradaPedidosRelatorio);
+
+            FiltrarPedidos(sender);
+
         }
 
-
-        private void CarregarPedidos()
+        private void FiltrarPedidos(object sender)
         {
-            UcRelatorioVm.RelatorioListaPedidos = new ObservableCollection<RelatorioModel>(new RelatorioBusinness().ListaPedidosRelatorio());
+            var listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioGeral();
+
+            if (sender is Button btn)
+            {
+               
+                    var filtros = (sender as Button).Tag as UcRelatorioViewModel;
+
+                    var nome = filtros.Nome;
+
+                    var numeroInicial = filtros.NumeroInicial;
+                    var numeroFInal = filtros.NumeroFinal;
+
+                    var valorInicial = filtros.ValorInicial;
+                    var valorFinal = filtros.ValorFinal;
+
+                    var dataInicial = filtros.DataInicial;
+                    var dataFinal = filtros.DataFinal;
+
+                    var status = filtros.Status;
+
+                    if (!string.IsNullOrEmpty(nome))
+                    {
+                        listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorCliente(nome, listaRelatorio);
+                    }
+
+                    if (numeroInicial > 0 && numeroFInal >= numeroInicial)
+                    {
+                        listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorNumero(numeroInicial, numeroFInal, listaRelatorio);
+                    }
+
+                    if (valorInicial > 0 && valorFinal >= valorInicial)
+                    {
+                        listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorValor(valorInicial, valorFinal, listaRelatorio);
+                    }
+
+                    if (dataInicial != null && dataFinal >= dataInicial)
+                    {
+                        listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorData(dataInicial, dataFinal, listaRelatorio);
+                    }
+
+
+                    ListarPedidosFiltrados(listaRelatorio);
+
+
+                
+            }
         }
+
+        private void ListarPedidosFiltrados(List<RelatorioModel> listaFiltrada)
+        {
+            UcRelatorioVm.RelatorioListaPedidos = new ObservableCollection<RelatorioModel>(new RelatorioBusinness().ListaFiltrada(listaFiltrada));
+        }
+
+
+        private void ValidacaoValor(object sender, TextCompositionEventArgs e)
+        {
+            Regex valor = new Regex("[^0-9]+");
+            e.Handled = valor.IsMatch(e.Text);
+        }
+
     }
 
 }

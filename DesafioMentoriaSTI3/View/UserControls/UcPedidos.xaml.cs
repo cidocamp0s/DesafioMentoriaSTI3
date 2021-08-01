@@ -161,9 +161,10 @@ namespace DesafioMentoriaSTI3.View.UserControls
             else
             {
                 ExibirPedidos();
+                
             }
 
-
+            UcPedidoVm.Nome = "";
 
         }
         public void ExibirPedidoDetalhado()
@@ -200,7 +201,7 @@ namespace DesafioMentoriaSTI3.View.UserControls
                 SalvarPedidos(ListagemPedidos());
 
 
-                ExibirPedidos();
+              
                
 
             }
@@ -224,12 +225,15 @@ namespace DesafioMentoriaSTI3.View.UserControls
                 {
                     VerificaJson();
 
+                      ExibirPedidos();
+
                     MessageBox.Show("Sucesso!!", "Sincronia Efetuada com sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
 
                 if (btn.Name == "BtnPesquisar")
                 {
                     ExibirPedidosCliente();
+
                 }
                 
                 

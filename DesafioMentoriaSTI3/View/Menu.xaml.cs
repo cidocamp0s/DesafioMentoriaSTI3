@@ -2,6 +2,7 @@
 using DesafioMentoriaSTI3.Model;
 using DesafioMentoriaSTI3.Report;
 using DesafioMentoriaSTI3.View.UserControls;
+using DesafioMentoriaSTI3.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,13 @@ namespace DesafioMentoriaSTI3.View
     /// </summary>
     public partial class Menu : Window
     {
+        private UcMenuViewModel UcMenuVm = new UcMenuViewModel();
+
         public Menu()
         {
-            InitializeComponent();      
+            InitializeComponent();
+            DataContext = UcMenuVm;
+            UcMenuVm.DescricaoMenu = "Pedidos STI3";
 
             Iniciar();
 
@@ -121,11 +126,13 @@ namespace DesafioMentoriaSTI3.View
                 {
 
                     conteudo.Content = new Pedidos();
+                    UcMenuVm.DescricaoMenu = "Pedidos STI3";
                 }
 
                 else if (MnItem.Name == "Relatorios")
                 {
                     conteudo.Content = new UcRelatorio();
+                    UcMenuVm.DescricaoMenu = "Relatórios STI3";
                 }
 
                 else if (MnItem.Name == "Sair")

@@ -21,6 +21,17 @@ namespace DesafioMentoriaSTI3.ViewModel
         }
 
 
+        private string _nome;
+        public string Nome
+        {
+            get => _nome;
+            set
+            {
+                _nome = value;
+                OnPropertyChanged(nameof(Nome));
+            }
+        }
+
         private double _numeroInicial;
         public double NumeroInicial
         {
@@ -45,8 +56,8 @@ namespace DesafioMentoriaSTI3.ViewModel
         }
 
 
-        private double _valorInicial;
-        public double ValorInicial
+        private decimal _valorInicial;
+        public decimal ValorInicial
         {
             get => _valorInicial;
             set
@@ -57,8 +68,8 @@ namespace DesafioMentoriaSTI3.ViewModel
         }
 
 
-        private double _valorFinal;
-        public double ValorFinal
+        private decimal _valorFinal;
+        public decimal ValorFinal
         {
             get => _valorFinal;
             set
@@ -92,6 +103,16 @@ namespace DesafioMentoriaSTI3.ViewModel
             }
         }
 
+        private string _status;
+        public string Status
+        {
+            get => _status;
+            set 
+            {
+                _status = value;
+                OnPropertyChanged(nameof(Status));
+            }
+        }
 
 
 

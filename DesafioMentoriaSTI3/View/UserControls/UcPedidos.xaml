@@ -113,8 +113,6 @@
                   BorderThickness="1"    
                   ItemsSource="{Binding ListagemPedidos}" Grid.RowSpan="2" MouseDoubleClick="LstPedidos_MouseDoubleClick">
 
-
-
             <ListBox.ItemTemplate>
                 <DataTemplate>
 

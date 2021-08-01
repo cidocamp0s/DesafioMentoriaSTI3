@@ -12,6 +12,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="130"/>
                 <RowDefinition Height="50 "/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
             <Grid >
@@ -28,96 +29,102 @@
 
                 <StackPanel Margin="5" >
                     <Label  Content="Número inicial"/>
-                    <TextBox x:Name="TxtNumeroIncial"  Text="{Binding Numero}" />
+                    <TextBox x:Name="TxtNumeroIncial"  Text="{Binding NumeroInicial}" PreviewTextInput="ValidacaoValor" />
                     <Label   Content="Número Final"/>
-                    <TextBox x:Name="TxtNumeroFinal" Text="{Binding Numero}"/>
+                    <TextBox x:Name="TxtNumeroFinal" Text="{Binding NumeroFinal}" PreviewTextInput="ValidacaoValor"/>
                 </StackPanel>
 
                 <StackPanel Margin="5" Grid.Column="1">
                     <Label Content="Valor Inicial" />
-                    <TextBox x:Name="TxtValorIncial" Text="{Binding ValorTotal}"/>
+                    <TextBox x:Name="TxtValorIncial" Text="{Binding ValorInicial}" PreviewTextInput="ValidacaoValor"  />
                     <Label Content="Valor Final"/>
-                    <TextBox x:Name="TxtValorFinal" Text="{Binding ValorTotal}"/>
+                    <TextBox x:Name="TxtValorFinal" Text="{Binding ValorFinal}" PreviewTextInput="ValidacaoValor"/>
                 </StackPanel>
 
                 <StackPanel  Grid.Column="2" Margin="5"  >
                     <Label   Content="Data inicial"/>
-                    <DatePicker x:Name="DtpDataCriacaoInicia"  SelectedDate="{Binding DataCriacao}" />
+                    <DatePicker x:Name="DtpDataCriacao"   SelectedDate="{Binding  DataInicial}" DisplayDate="2021-01-01" />
                     <Label   Content="Data Final"/>
-                    <DatePicker  x:Name="DtpDataCriacaoFinal"  SelectedDate="{Binding DataCriacao}" />
+                    <DatePicker  x:Name="DtpDataCriacaoFinal"  SelectedDate="{Binding DataFinal}"  DisplayDate="2021-01-01"  />
                 </StackPanel>
-
-                <StackPanel Grid.Column="3" Grid.ColumnSpan="2">
-                    <Label Content="Cliente" />
-                    <ListBox x:Name="LstClientes" 
-                             Height="100" 
-                             SelectionMode="Multiple"  >
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel  Orientation="Horizontal" >
-                                    <CheckBox  Content="{Binding Path=cliente}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-
-                </StackPanel>
-
-                <StackPanel Grid.Column="5"
-                            Grid.ColumnSpan="2">
-                    <Label Content="Status"/>
-                    <ListBox x:Name="LsStatus" Height="51" FontSize="20" SelectionMode="Multiple" >
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel  Orientation="Horizontal" >
-                                    <CheckBox  Content="Aprovado"/>
-                                    <CheckBox  Content="Cancelado"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-
-                    </ListBox>
-
-                </StackPanel>
-
-                <StackPanel Grid.Column="7" Margin="5">
-
-                    <Button x:Name="BtnVisualizarRelatorio" 
-                            Style="{StaticResource BtnArredondado}"  
-                            Content="Visualizar"
-                            Click="BtnRelatorio_Click"/>
-
-                    <Button x:Name="BtnImprimirRelatorio" 
-                            Style="{StaticResource BtnArredondado}"
-                            Content="Imprimir"
-                            Click="BtnRelatorio_Click"/>
-                </StackPanel>
-
-            </Grid>
-
-            <Grid Grid.Row="2">
 
                
 
+                    <Button x:Name="BtnVisualizarRelatorio" 
+                            Grid.Column="3" Margin="5"
+                            Tag="{Binding}"
+                            Style="{StaticResource BtnArredondado}"  
+                            Content="Visualizar"
+                            Click="BtnRelatorio_Click"/>
+               
 
-                <ItemsControl    Grid.Row="3"   Background="white" BorderBrush="Gray" BorderThickness="1"    ItemsSource="{Binding RelatorioListaPedidos}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate >
+            </Grid>
 
-                            <Grid Margin="5">
+            <Grid   Grid.Row="1"   Height="33" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="5*"  />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label  Style="{ StaticResource BordaCAbecalhoGrid}"                   
+                    Content="NÚMERO"/>
+
+                <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="1"   
+                    Content="DATA"/>
+
+                <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="2"  
+                    Content="CLIENTE"/>
+
+                <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="3"   
+                    Content="STATUS"/>
+
+                <Label  Style="{ StaticResource BordaCAbecalhoGrid}" 
+                    Grid.Column="4"   
+                    Content="VALOR TOTAL"/>
+
+            </Grid>
+
+
+
+
+
+
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
+
+                <ItemsControl     Background="white"
+                                  BorderBrush="Gray" 
+                                  BorderThickness="1"   
+                                  ItemsSource="{Binding RelatorioListaPedidos}" 
+                                  Grid.ColumnSpan="2">
+
+                    <ItemsControl.ItemTemplate >
+                        <DataTemplate  >
+
+                            <Grid>
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="230"/>
-                                    <ColumnDefinition Width="300"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="130"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="5*"  />
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="3*"/>
                                 </Grid.ColumnDefinitions>
 
-                                
-                                
 
-                                <TextBlock  Text="{Binding Numero }"/>
+
+
+                                <TextBlock Margin="5,0,0,0"  Text="{Binding Numero, StringFormat=00#0}"/>
 
                                 <TextBlock   Grid.Column="1"  Grid.Row="1"
                                     Text="{Binding  DataCriacao, ConverterCulture=pt-BR, StringFormat=D}"/>
@@ -131,6 +138,7 @@
                                 <TextBlock   Grid.Column="4" Grid.Row="1"
                                     Text="{Binding ValorTotal, ConverterCulture=pt-BR, StringFormat=#\,##0.00}"/>
 
+                                <Border Grid.ColumnSpan="5" BorderThickness="0,0,0,1" BorderBrush="Black"/>
                             </Grid>
 
                         </DataTemplate>
