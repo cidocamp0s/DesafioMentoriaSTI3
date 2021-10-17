@@ -38,22 +38,19 @@ namespace DesafioMentoriaSTI3.Businness
             return lista;
         }
 
-        public List<RelatorioModel> ListaPedidosRelatorioPorCliente(string NomeCliente, List<RelatorioModel> listaParaFiltrar)
+        public List<RelatorioModel> ListaPedidosRelatorioPorCliente(List<RelatorioModel> listaParaFiltrar, List<ClienteModel> ListaCLientes)
         {
-
-            var lista = listaParaFiltrar.Where(p => p.Cliente.Contains(NomeCliente)).ToList();
-
-
-            return lista;
+            return listaParaFiltrar.Where(x => ListaCLientes.Any(t => t.Nome == x.Cliente)).ToList();
         }
 
-        public List<RelatorioModel> ListaPedidosRelatorioPorStatus(string status, List<RelatorioModel> listaParaFiltrar)
+        public List<RelatorioModel> ListaPedidosRelatorioPorStatus(List<RelatorioModel> listaStatus, List<RelatorioModel> listaParaFiltrar)
         {
 
-            var lista = listaParaFiltrar.Where(p => p.Status == status).ToList();
+         
 
+           return listaParaFiltrar.Where(x => listaStatus.Any(t => t.Status == x.Status)).ToList();
 
-            return lista;
+           
         }
 
         public List<RelatorioModel> ListaPedidosRelatorioPorNumero(double numeroInicial, double numeroFInal, List<RelatorioModel> listaParaFiltrar)
@@ -94,7 +91,50 @@ namespace DesafioMentoriaSTI3.Businness
 
             return lista;
         }
-       
+
+        public List<RelatorioModel> Clientes()
+        {
+            return _context.Clientes.Select(s => new RelatorioModel
+            {
+
+                Cliente = s.Nome
+
+            }).OrderBy(x => x.Cliente).ToList();
+        }
+
+        public List<RelatorioModel> ClientesChecados(List<ClienteModel> listaClientesChecados)
+        {
+            var lista = listaClientesChecados.Select(s => new RelatorioModel
+            {
+
+                Cliente = s.Nome
+            }).ToList();
+
+            return lista;
+
+
+        }
+
+        public List<RelatorioModel> StatusExistentes()
+        {
+            var lista = _context.Pedidos.GroupBy(x => new { x.Status }).Select(c => new { c.Key.Status }).ToList();
+
+            var list = lista.Select(x => new RelatorioModel
+            {
+
+                Status = x.Status
+
+            }).ToList();
+
+            return list;
+
+
+        }
+
 
     }
+
+
+
 }
+

@@ -21,8 +21,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition/>
+            <RowDefinition Height="30"/>
+
         </Grid.RowDefinitions>
 
+        <TextBlock Margin="5" FontSize="10" Grid.Row="2">
+            <Run Text="Versão: "/>
+            <Run Text="{Binding Versao}"/>
+        </TextBlock>
+        
+        
         <Grid x:Name="GridCabecalho" Grid.ColumnSpan="2"  >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70"/>
@@ -37,6 +45,7 @@
                     BorderBrush="Black" 
                     Grid.ColumnSpan="6"
                     Background="Gray"/>
+         
 
             <StackPanel VerticalAlignment="Center" 
                         Margin="5">

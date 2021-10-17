@@ -17,5 +17,18 @@ namespace DesafioMentoriaSTI3.ViewModel
                 OnPropertyChanged(nameof(DescricaoMenu));
             }
         }
+
+
+        private string _versao;
+        public string Versao
+        {
+            get => _versao;
+
+            set
+            {
+                _versao = value;
+                OnPropertyChanged(nameof(Versao));
+            }
+        }
     }
 }

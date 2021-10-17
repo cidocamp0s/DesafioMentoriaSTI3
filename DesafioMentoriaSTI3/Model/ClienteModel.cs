@@ -12,7 +12,9 @@ namespace DesafioMentoriaSTI3.Model
         public string Cnpj { get; set; }
         public string Cpf { get; set; }    
         public string RazaoSocial { get; set; }
-        public string Email { get; set; }       
+        public string Email { get; set; }    
+
+        public bool Selecionado { get; set; }
       
 
     }

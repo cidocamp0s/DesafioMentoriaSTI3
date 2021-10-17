@@ -25,8 +25,6 @@ namespace DesafioMentoriaSTI3.Businness
         public void AdicionarPedido(PedidoModel pedidoModel)
         {
 
-
-
             Pedido p = new Pedido
             {
 
@@ -86,7 +84,8 @@ namespace DesafioMentoriaSTI3.Businness
                 DataCriacao = p.DataCriacao,
                 Cliente = new ClienteModel
                 {
-                    Nome = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Cliente.Id).Select(c => c.Nome).First()
+                    Nome = p.Cliente.Nome
+
                 },
                 Status = p.Status,
                 ValorTotal = p.ValorTotal
@@ -109,7 +108,7 @@ namespace DesafioMentoriaSTI3.Businness
                 DataCriacao = p.DataCriacao,
                 Cliente = new ClienteModel
                 {
-                    Nome = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Cliente.Id).Select(c => c.Nome).First()
+                    Nome = p.Cliente.Nome
                 },
                 Status = p.Status,
                 ValorTotal = p.ValorTotal
@@ -136,24 +135,24 @@ namespace DesafioMentoriaSTI3.Businness
 
                 EnderecoEntrega = new EnderecoEntregaModel
                 {
-                    Endereco = _context.EnderecosEntregas.AsNoTracking().Where(c => c.Id == p.EnderecoEntrega.Id).Select(c => c.Endereco).First(),
-                    Bairro = _context.EnderecosEntregas.AsNoTracking().Where(c => c.Id == p.EnderecoEntrega.Id).Select(c => c.Bairro).First(),
-                    Cep = _context.EnderecosEntregas.AsNoTracking().Where(c => c.Id == p.EnderecoEntrega.Id).Select(c => c.Cep).First(),
-                    Cidade = _context.EnderecosEntregas.AsNoTracking().Where(c => c.Id == p.EnderecoEntrega.Id).Select(c => c.Cidade).First(),
-                    Complemento = _context.EnderecosEntregas.AsNoTracking().Where(c => c.Id == p.EnderecoEntrega.Id).Select(c => c.Complemento).First(),
-                    Estado = _context.EnderecosEntregas.AsNoTracking().Where(c => c.Id == p.EnderecoEntrega.Id).Select(c => c.Estado).First(),
-                    Numero = _context.EnderecosEntregas.AsNoTracking().Where(c => c.Id == p.EnderecoEntrega.Id).Select(c => c.Numero).First(),
-                    Referencia = _context.EnderecosEntregas.AsNoTracking().Where(c => c.Id == p.EnderecoEntrega.Id).Select(c => c.Referencia).First(),
+                    Endereco = p.EnderecoEntrega.Endereco,
+                    Bairro = p.EnderecoEntrega.Bairro,
+                    Cep = p.EnderecoEntrega.Cep,
+                    Cidade = p.EnderecoEntrega.Cidade,
+                    Complemento = p.EnderecoEntrega.Complemento,
+                    Estado = p.EnderecoEntrega.Estado,
+                    Numero = p.EnderecoEntrega.Numero,
+                    Referencia = p.EnderecoEntrega.Referencia,
 
 
                 },
 
                 Cliente = new ClienteModel
                 {
-                    Nome = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Cliente.Id).Select(c => c.Nome).First(),
-                    Cpf = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Cliente.Id).Select(c => c.Cpf).First(),
-                    DataNascimento = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Cliente.Id).Select(c => c.DataNascimento).First(),
-                    Email = _context.Clientes.AsNoTracking().Where(c => c.Id == p.Cliente.Id).Select(c => c.Email).First(),
+                    Nome = p.Cliente.Nome,
+                    Cpf = p.Cliente.Cpf,
+                    DataNascimento = p.Cliente.DataNascimento,
+                    Email = p.Cliente.Email,
                 },
 
                 Status = p.Status,

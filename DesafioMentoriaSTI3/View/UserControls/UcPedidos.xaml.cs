@@ -28,6 +28,8 @@ namespace DesafioMentoriaSTI3.View.UserControls
             DataContext = UcPedidoVm;
 
             VerificaJson();
+
+          
           
 
         }
@@ -245,11 +247,13 @@ namespace DesafioMentoriaSTI3.View.UserControls
 
 
 
-            }
+            }         
+
+           
         }
 
-
     }
+
 
 
 

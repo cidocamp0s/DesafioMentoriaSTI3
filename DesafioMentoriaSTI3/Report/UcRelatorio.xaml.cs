@@ -5,6 +5,7 @@ using DesafioMentoriaSTI3.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -27,8 +28,14 @@ namespace DesafioMentoriaSTI3.Report
 
         private UcRelatorioViewModel UcRelatorioVm = new UcRelatorioViewModel();
 
+        List<ClienteModel> ClientesChecados = new List<ClienteModel>();
+        List<RelatorioModel> StatusChecados = new List<RelatorioModel>();
+
         public UcRelatorio()
         {
+            ListarClientes();
+            ListarStatus();
+
             InitializeComponent();
 
             DataContext = UcRelatorioVm;
@@ -41,52 +48,114 @@ namespace DesafioMentoriaSTI3.Report
 
             if (sender is Button btn)
             {
-               
-                    var filtros = (sender as Button).Tag as UcRelatorioViewModel;
 
-                    var nome = filtros.Nome;
-
-                    var numeroInicial = filtros.NumeroInicial;
-                    var numeroFInal = filtros.NumeroFinal;
-
-                    var valorInicial = filtros.ValorInicial;
-                    var valorFinal = filtros.ValorFinal;
-
-                    var dataInicial = filtros.DataInicial;
-                    var dataFinal = filtros.DataFinal;
-
-                    var status = filtros.Status;
-
-                    if (!string.IsNullOrEmpty(nome))
-                    {
-                        listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorCliente(nome, listaRelatorio);
-                    }
-
-                    if (numeroInicial > 0 && numeroFInal >= numeroInicial)
-                    {
-                        listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorNumero(numeroInicial, numeroFInal, listaRelatorio);
-                    }
-
-                    if (valorInicial > 0 && valorFinal >= valorInicial)
-                    {
-                        listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorValor(valorInicial, valorFinal, listaRelatorio);
-                    }
-
-                    if (dataInicial != null && dataFinal >= dataInicial)
-                    {
-                        listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorData(dataInicial, dataFinal, listaRelatorio);
-                    }
+                var filtros = (sender as Button).Tag as UcRelatorioViewModel;
 
 
-                    ListarPedidosFiltrados(listaRelatorio);
+                var numeroInicial = filtros.NumeroInicial;
+                var numeroFInal = filtros.NumeroFinal;
+
+                var valorInicial = filtros.ValorInicial;
+                var valorFinal = filtros.ValorFinal;
+
+                var dataInicial = filtros.DataInicial;
+                var dataFinal = filtros.DataFinal;
+
+                var status = filtros.StatusPedidos;
 
 
-                
+                if (numeroInicial > 0 && numeroFInal >= numeroInicial)
+                {
+                    listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorNumero(numeroInicial, numeroFInal, listaRelatorio);
+                }
+
+                if (valorInicial > 0 && valorFinal >= valorInicial)
+                {
+                    listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorValor(valorInicial, valorFinal, listaRelatorio);
+                }
+
+                if (dataInicial > Convert.ToDateTime("01-01-1000") && dataFinal >= dataInicial)
+                {
+                    listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorData(dataInicial, dataFinal, listaRelatorio);
+                }
+
+                if (ClientesChecados.Count > 0)
+                {
+                    listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorCliente(listaRelatorio, ClientesChecados);
+                }
+
+                if (StatusChecados.Count > 0)
+                {
+                    listaRelatorio = new RelatorioBusinness().ListaPedidosRelatorioPorStatus(StatusChecados, listaRelatorio);
+                }
+
+
+                ListarPedidosFiltrados(listaRelatorio);
+
+
+
             }
         }
         private void ListarPedidosFiltrados(List<RelatorioModel> listaFiltrada)
         {
             UcRelatorioVm.RelatorioListaPedidos = new ObservableCollection<RelatorioModel>(new RelatorioBusinness().ListaFiltrada(listaFiltrada));
+        }
+        private void ListarClientes()
+        {
+            UcRelatorioVm.RelatorioListaClientes = new ObservableCollection<RelatorioModel>(new RelatorioBusinness().Clientes());
+        }
+        private void ListarStatus()
+        {
+            UcRelatorioVm.StatusPedidos = new ObservableCollection<RelatorioModel>(new RelatorioBusinness().StatusExistentes());
+        }
+        private List<ClienteModel> ClientesSelecionados(RoutedEventArgs e)
+        {
+            var checado = (e.Source as CheckBox).IsChecked;
+
+            if ((bool)checado == true)
+            {
+
+                ClientesChecados.Add(new ClienteModel { Nome = (e.Source as CheckBox).Content.ToString() });
+            }
+
+
+            else
+            {
+
+                ClientesChecados.RemoveAll(x => x.Nome == (e.Source as CheckBox).Content.ToString());
+            }
+
+
+
+
+            return ClientesChecados;
+
+
+        }
+
+        private List<RelatorioModel> StatusSelecionados(RoutedEventArgs e)
+        {
+            var checado = (e.Source as CheckBox).IsChecked;
+
+
+            if ((bool)checado == true)
+            {
+
+                StatusChecados.Add(new RelatorioModel { Status = (e.Source as CheckBox).Content.ToString() });
+            }
+
+
+            else
+            {
+
+                StatusChecados.RemoveAll(x => x.Status == (e.Source as CheckBox).Content.ToString());
+            }
+
+
+
+            return StatusChecados;
+
+
         }
         private void ValidarValorInput(object sender, TextCompositionEventArgs e)
         {
@@ -99,7 +168,19 @@ namespace DesafioMentoriaSTI3.Report
             FiltrarPedidos(sender);
 
         }
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if ((e.Source as CheckBox).Name == "status")
+            {
+                StatusSelecionados(e);
+            }
+            else
+            {
+                ClientesSelecionados(e);
+            }
 
+
+        }
     }
 
 }

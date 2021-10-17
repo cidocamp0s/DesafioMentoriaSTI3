@@ -12,13 +12,15 @@ namespace DesafioMentoriaSTI3.Model
         public Guid Id { get; set; }
         public string Cliente { get; set; }
         public double Numero { get; set; }
-        public DateTime DataCriacao { get; set; }
+        public DateTime DataCriacao { get; set; } 
         public DateTime DataAlteracao { get; set; }
         public string Status { get; set; }
         public decimal Desconto { get; set; }
         public decimal Frete { get; set; }
         public decimal SubTotal { get; set; }
         public decimal ValorTotal { get; set; }
+        public bool Selecionado { get; set; }
+
 
 
 

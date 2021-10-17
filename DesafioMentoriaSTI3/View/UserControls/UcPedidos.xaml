@@ -35,8 +35,11 @@
             <TextBox Height="25"  x:Name="TxtPesquisaNome" 
                    FontSize="15" 
                    VerticalAlignment="Center"
+                  Style="{StaticResource Teste}"
+                   
                    Text="{Binding Path=Nome}"                 
                    TabIndex="1"/>
+            
 
             <Button x:Name="BtnPesquisar"
                     Grid.Column="1" 

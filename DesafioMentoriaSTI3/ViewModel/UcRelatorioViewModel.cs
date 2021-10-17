@@ -20,6 +20,32 @@ namespace DesafioMentoriaSTI3.ViewModel
             }
         }
 
+        public ObservableCollection<RelatorioModel> _relatorioListaClientes;
+        public ObservableCollection<RelatorioModel> RelatorioListaClientes
+        {
+            get => _relatorioListaClientes;
+            set
+            {
+                _relatorioListaClientes = value;
+                OnPropertyChanged(nameof(RelatorioListaClientes));
+            }
+        }
+
+        public ObservableCollection<RelatorioModel> _statusPedidos;
+        public ObservableCollection<RelatorioModel> StatusPedidos
+        {
+            get => _statusPedidos;
+            set
+            {
+                _statusPedidos = value;
+                OnPropertyChanged(nameof(StatusPedidos));
+            }
+        }
+
+
+
+
+
 
         private string _nome;
         public string Nome
@@ -50,7 +76,7 @@ namespace DesafioMentoriaSTI3.ViewModel
             get => _numeroFinal;
             set
             {
-                _numeroFinal= value;
+                _numeroFinal = value;
                 OnPropertyChanged(nameof(NumeroFinal));
             }
         }
@@ -107,12 +133,26 @@ namespace DesafioMentoriaSTI3.ViewModel
         public string Status
         {
             get => _status;
-            set 
+            set
             {
                 _status = value;
                 OnPropertyChanged(nameof(Status));
             }
         }
+
+
+        private string _selecionado;
+        public string Selecionado
+        {
+            get => _selecionado;
+            set
+            {
+                _selecionado = value;
+                OnPropertyChanged(nameof(Selecionado));
+            }
+        }
+
+
 
 
 

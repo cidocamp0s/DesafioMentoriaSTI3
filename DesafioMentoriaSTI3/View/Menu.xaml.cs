@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,14 +30,22 @@ namespace DesafioMentoriaSTI3.View
         public Menu()
         {
             InitializeComponent();
+
             DataContext = UcMenuVm;
+
             UcMenuVm.DescricaoMenu = "Pedidos STI3";
+            UcMenuVm.Versao = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             Iniciar();
 
             new Pedidos();
 
-            
+         
+
+         
+
+
+
 
         }
         private void Iniciar()
